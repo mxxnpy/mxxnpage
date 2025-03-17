@@ -1,4 +1,3 @@
-
 name: Deploy to GitHub Pages
 
 on:
@@ -24,6 +23,11 @@ jobs:
 
       - name: Build
         run: npm run build -- --configuration production
+
+      - name: Create redirect index.html and .nojekyll
+        run: |
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=browser/"></head><body>Redirecting...</body></html>' > dist/mxxnpage/index.html
+          touch dist/mxxnpage/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
