@@ -1,125 +1,120 @@
-# Personal Status Dashboard
+# mxxn Dashboard Frontend
 
-A full-stack TypeScript application inspired by ven.earth to display real-time activity and status information.
+Este é o frontend do mxxn Dashboard, uma aplicação Angular que exibe informações em tempo real sobre atividades e status do desenvolvedor.
 
-## Tech Stack
+## Funcionalidades
 
-- **Backend**: NestJS
-- **Frontend**: Angular with Material UI
-- **Language**: TypeScript
+### Página Inicial
+- **Relógio em tempo real**: Exibe a hora atual em São Paulo
+- **Clima**: Mostra as condições climáticas atuais em São Paulo
+- **Contribuições do GitHub**: Visualização das contribuições do usuário 'mxxnpy'
+- **Status do Discord**: Exibe o status atual do usuário no Discord
+- **Player do Spotify**: Mostra a música que está sendo reproduzida atualmente
 
-## Features
+### Página do Spotify
+- **Top Artistas**: Exibe os artistas mais ouvidos
+- **Top Músicas**: Mostra as músicas mais ouvidas
+- **Playlists**: Lista todas as playlists do usuário
+- **Player**: Controle de reprodução e visualização da música atual
 
-- Clock and weather display for São Paulo
-- GitHub activity feed for user 'mxxnpy'
-- Discord presence with activity mapping
-- Spotify current track display
-- Project page
-- Light/dark theme toggle
-- Social media links
-- Minimal design matching ven.earth aesthetic
-- Swagger UI documentation
+### Página de Projetos
+- Documentação dos projetos usando um estilo similar ao Docusaurus
 
-## Project Structure
+## Recursos Técnicos
+- **Design Responsivo**: Adaptação para diferentes tamanhos de tela
+- **Tema Escuro**: Interface com tema escuro inspirado no ven.earth
+- **Componentes Standalone**: Utilização da arquitetura mais recente do Angular
+- **Integração com APIs**: Conexão com GitHub, Spotify, Discord e serviços de clima
 
-```
-personal-status-dashboard/
-├── backend/                 # NestJS backend
-│   ├── src/
-│   │   ├── api/             # API modules
-│   │   │   ├── discord/     # Discord integration
-│   │   │   ├── github/      # GitHub integration
-│   │   │   ├── spotify/     # Spotify integration
-│   │   │   ├── status/      # Status endpoints
-│   │   │   └── weather/     # Weather integration
-│   │   ├── config/          # Configuration
-│   │   ├── interfaces/      # TypeScript interfaces
-│   │   ├── services/        # Shared services
-│   │   ├── utils/           # Utility functions
-│   │   ├── app.module.ts    # Main application module
-│   │   └── main.ts          # Application entry point
-│   ├── .env                 # Environment variables
-│   └── package.json         # Dependencies
-│
-├── frontend/                # Angular frontend
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── components/  # Reusable components
-│   │   │   ├── pages/       # Page components
-│   │   │   │   ├── home/    # Home page
-│   │   │   │   └── projects/# Projects page
-│   │   │   ├── services/    # Angular services
-│   │   │   ├── interfaces/  # TypeScript interfaces
-│   │   │   ├── utils/       # Utility functions
-│   │   │   ├── app.component.ts  # Root component
-│   │   │   └── app.routes.ts     # Routing configuration
-│   │   ├── assets/          # Static assets
-│   │   ├── environments/    # Environment configuration
-│   │   └── styles.scss      # Global styles
-│   └── package.json         # Dependencies
-│
-└── README.md                # Project documentation
+## Configuração
+
+### Pré-requisitos
+- Node.js 18+
+- Angular CLI 17+
+
+### Instalação
+```bash
+# Instalar dependências
+npm install
+
+# Iniciar servidor de desenvolvimento
+npm start
 ```
 
-## Development
+### Configuração de Ambiente
+O arquivo `src/environments/environment.ts` contém as configurações para desenvolvimento:
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/backend',
+  weatherApiUrl: 'http://localhost:3000/backend/weather',
+  githubApiUrl: 'http://localhost:3000/backend/github',
+  spotifyApiUrl: 'http://localhost:3000/backend/spotify',
+  discordApiUrl: 'http://localhost:3000/backend/discord',
+  baseUrl: 'http://localhost:4202'
+};
+```
 
-### Prerequisites
+Para produção, o arquivo `src/environments/environment.prod.ts` contém:
+```typescript
+export const environment = {
+  production: true,
+  apiUrl: 'https://mxxnpage-bff.onrender.com/backend',
+  weatherApiUrl: 'https://mxxnpage-bff.onrender.com/backend/weather',
+  githubApiUrl: 'https://mxxnpage-bff.onrender.com/backend/github',
+  spotifyApiUrl: 'https://mxxnpage-bff.onrender.com/backend/spotify',
+  discordApiUrl: 'https://mxxnpage-bff.onrender.com/backend/discord',
+  baseUrl: 'https://mxxnpy.github.io'
+};
+```
 
-- Node.js (v18+)
-- npm or yarn
+## Construção para Produção
+```bash
+# Construir para produção
+npm run build -- --configuration production
 
-### Setup
+# Criar arquivo 404.html para SPA routing no GitHub Pages
+cp dist/mxxn/index.html dist/mxxn/404.html
+```
 
-1. Clone the repository
-2. Install backend dependencies:
-   ```
-   cd backend
-   npm install
-   ```
-3. Install frontend dependencies:
-   ```
-   cd frontend
-   npm install
-   ```
-4. Configure environment variables in `backend/.env`
+## Estrutura do Projeto
 
-### Running the Application
+### Componentes Principais
+- **Clock**: Exibe a hora atual
+- **Weather**: Mostra informações do clima
+- **GitHub Contributions**: Exibe as contribuições do GitHub
+- **Discord Status**: Mostra o status atual do Discord
+- **Spotify Player**: Exibe e controla a reprodução do Spotify
+- **Spotify Top Artists/Tracks**: Exibe os artistas e músicas mais ouvidos
+- **Spotify Playlists**: Lista as playlists do usuário
 
-#### Development Mode
+### Serviços
+- **Weather Service**: Comunicação com a API de clima
+- **GitHub Service**: Comunicação com a API do GitHub
+- **Discord Service**: Comunicação com a API do Discord
+- **Spotify Service**: Comunicação com a API do Spotify
+- **Status Service**: Gerenciamento do status do usuário
 
-1. Start the backend:
-   ```
-   cd backend
-   npm run start:dev
-   ```
+## Guia de Uso
 
-2. Start the frontend:
-   ```
-   cd frontend
-   npm start
-   ```
+### Navegação
+- A navegação principal está disponível no cabeçalho da aplicação
+- Alterne entre as páginas Home, Spotify e Projects
 
-3. Access the application:
-   - Frontend: http://localhost:4200
-   - Backend API: http://localhost:3000/backend
-   - Swagger Documentation: http://localhost:3000/backend/docs
+### Autenticação do Spotify
+1. Acesse a página do Spotify
+2. Clique no botão de login
+3. Autorize o acesso à sua conta do Spotify
+4. Após a autenticação, você será redirecionado de volta à aplicação
 
-## Schedule-based Status Updates
+### Visualização de Dados
+- As informações são atualizadas automaticamente em intervalos regulares
+- O status é determinado com base na hora do dia e nas atividades atuais
 
-The application implements the following schedule for status updates:
+## Personalização
+- Para alterar o usuário do GitHub, atualize a configuração no backend
+- Para personalizar o esquema de cores, modifique as variáveis SCSS em `src/styles.scss`
+- Para ajustar os intervalos de atualização, modifique os serviços correspondentes
 
-- Weekdays (Monday-Friday):
-  * 06:00-07:30: Free Time
-  * 08:30-18:30: At Work
-  * 19:00-00:00: Free Time
-- Weekends: Free Time
-
-## Discord Presence Mapping
-
-- Gaming: when game is open
-- Programming: when VSCode/IDE is open
-- Chilling: when other programs or no activity
-- With Friends: when in call
-- Out of Home: when status is 'Ausente'
-- Vibing: when Spotify is active (not in work time)
-- At Work: when online during work hours
+## Implantação
+Consulte o guia de implantação para instruções detalhadas sobre como implantar o frontend no GitHub Pages.
