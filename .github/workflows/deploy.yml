@@ -27,6 +27,7 @@ jobs:
       - name: Create redirect index.html and .nojekyll
         run: |
           echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=browser/"></head><body>Redirecting...</body></html>' > dist/mxxnpage/index.html
+          cp -r dist/mxxnpage/browser/* dist/mxxnpage/
           touch dist/mxxnpage/.nojekyll
 
       - name: Deploy
