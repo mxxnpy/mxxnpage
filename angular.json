@@ -24,13 +24,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/mxxn" ,
+            "outputPath": "dist/mxxn",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "baseHref": "/mxxnpage/",
             "polyfills": [
               "zone.js"
-            ],
+           ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
