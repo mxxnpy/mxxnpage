@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/backend',
-  weatherApiUrl: 'http://localhost:3000/backend/weather',
-  githubApiUrl: 'http://localhost:3000/backend/github',
-  spotifyApiUrl: 'http://localhost:3000/backend/spotify',
-  discordApiUrl: 'http://localhost:3000/backend/discord',
+  apiUrl: 'https://mxxnpage-bff.onrender.com/backend/backend',
+  weatherApiUrl: 'https://mxxnpage-bff.onrender.com/backend/weather',
+  githubApiUrl: 'https://mxxnpage-bff.onrender.com/backend/github',
+  spotifyApiUrl: 'https://mxxnpage-bff.onrender.com/backend/spotify',
+  discordApiUrl: 'https://mxxnpage-bff.onrender.com/backenddiscord',
 };
