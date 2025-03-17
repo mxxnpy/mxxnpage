@@ -24,9 +24,6 @@ jobs:
       - name: Build
         run: npm run build -- --configuration production
 
-      - name: Create 404.html
-        run: cp dist/mxxn/index.html dist/mxxn/404.html
-
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
