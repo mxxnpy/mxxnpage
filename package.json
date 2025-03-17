@@ -1,0 +1,40 @@
+{
+  "name": "mxxn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "ng test",
+    "start": "ng serve --port 4202",
+    "build": "ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
+    "deploy": "ng build --configuration production && cp dist/mxxn/index.html dist/mxxn/404.html",
+    "gh-pages": "npm run deploy && npx gh-pages -d dist/mxxn"
+  },
+  "keywords": [],
+  "author": "Leandro",
+  "license": "ISC",
+  "description": "Personal Status Dashboard inspired by ven.earth",
+  "dependencies": {
+    "@angular-devkit/build-angular": "^19.2.3",
+    "@angular/animations": "^19.2.2",
+    "@angular/cdk": "^19.2.3",
+    "@angular/common": "^19.2.2",
+    "@angular/core": "^19.2.2",
+    "@angular/forms": "^19.2.2",
+    "@angular/material": "^19.2.3",
+    "@angular/platform-browser": "^19.2.2",
+    "@angular/platform-browser-dynamic": "^19.2.2",
+    "@angular/router": "^19.2.2",
+    "rxjs": "^7.8.2",
+    "tslib": "^2.8.1",
+    "zone.js": "^0.15.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^19.2.3",
+    "@angular/compiler": "^19.2.2",
+    "@angular/compiler-cli": "^19.2.2",
+    "@types/node": "^22.13.10",
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.8.2"
+  }
+}
