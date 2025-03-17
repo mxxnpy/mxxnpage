@@ -1,0 +1,28 @@
+<div class="container">
+  <header class="header">
+    <h1>leandro</h1>
+    <p>Software engineer from Brazil.</p>
+    <div class="social-links">
+      <a href="https://github.com/mxxnpy" target="_blank" rel="noopener noreferrer">
+        <img src="assets/icons/github.svg" alt="GitHub" class="icon" />
+      </a>
+      <a href="https://discord.com/users/mxxnpy" target="_blank" rel="noopener noreferrer">
+        <img src="assets/icons/discord.svg" alt="Discord" class="icon" />
+      </a>
+    </div>
+  </header>
+
+  <nav class="navigation">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/projects" routerLinkActive="active">Projects</a>
+    <a routerLink="/spotify" routerLinkActive="active">Music</a>
+  </nav>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 • Built with Angular & NestJS</p>
+  </footer>
+</div>
