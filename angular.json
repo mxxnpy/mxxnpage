@@ -27,10 +27,10 @@
             "outputPath": "dist/mxxn",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "/",
+            "baseHref": "/mxxnpage/",
             "polyfills": [
               "zone.js"
-            ],
+           ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
