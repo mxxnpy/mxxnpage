@@ -9,8 +9,6 @@
   "watch": "ng build --watch --configuration development",
   "deploy": "ng build --configuration production --base-href=/mxxnpage/",
   "gh-pages": "npm run deploy && npx gh-pages -d dist/mxxnpage"
-},
-
   },
   "keywords": [],
   "author": "Leandro",
