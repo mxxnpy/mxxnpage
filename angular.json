@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mxxn": {
+    "mxxnpage": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/mxxn",
+            "outputPath": "dist/mxxnpage",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "baseHref": "/mxxnpage/",
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mxxn:build:production"
+              "buildTarget": "mxxnpage:build:production"
             },
             "development": {
-              "buildTarget": "mxxn:build:development"
+              "buildTarget": "mxxnpage:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "mxxn:build"
+            "buildTarget": "mxxnpage:build"
           }
         },
         "test": {
