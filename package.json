@@ -7,7 +7,7 @@
     "start": "ng serve --port 4202",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "deploy": "ng build --configuration production --base-href=/mxxnpage/ && cp dist/mxxnpage/index.html "
+    "deploy": "ng build --configuration production --base-href=/mxxnpage/"
     "gh-pages": "npm run deploy && npx gh-pages -d dist/mxxn"
   },
   "keywords": [],
