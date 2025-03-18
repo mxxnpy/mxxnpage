@@ -1,8 +1,9 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://mxxnpage-bff.onrender.com/backend',
-  weatherApiUrl: 'https://mxxnpage-bff.onrender.com/backend/weather',
-  githubApiUrl: 'https://mxxnpage-bff.onrender.com/backend/github',
-  spotifyApiUrl: 'https://mxxnpage-bff.onrender.com/backend/spotify',
-  discordApiUrl: 'https://mxxnpage-bff.onrender.com/backend/discord',
+  apiUrl: 'https://mxxnbff.netlify.app/backend',
+  weatherApiUrl: 'https://mxxnbff.netlify.app/backend/weather',
+  githubApiUrl: 'https://mxxnbff.netlify.app/backend/github',
+  spotifyApiUrl: 'https://mxxnbff.netlify.app/backend/spotify',
+  discordApiUrl: ':https://mxxnbff.netlify.app/backend/discord',
+  baseUrl: 'https://mxxnpy.github.io'
 };
