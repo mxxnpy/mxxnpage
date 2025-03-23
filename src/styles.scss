@@ -62,6 +62,14 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
 }
 
+.favicon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url('./favicon.ico') no-repeat center center;
+  background-size: contain;
+}
+
 .icon {
   margin-right: 0.75rem;
   vertical-align: middle;
