@@ -31,19 +31,60 @@ export class ClockComponent implements OnInit {
   holidayMessage = '';
   
   // Define holiday dates
-  private holidays = {
-    christmas: { day: 25, month: 12, message: 'Merry Christmas!' },
-    newYear: { day: 1, month: 1, message: 'Happy New Year!' },
-    leandroBirthday: { day: 23, month: 4, message: 'Happy Birthday, Leandro!' },
-    victorBirthday: { day: 27, month: 11, message: 'Happy Birthday, Victor!' },
-    brazilIndependence: { day: 7, month: 9, message: 'Happy Independence Day, Brazil!' },
-    laborDay: { day: 1, month: 5, message: 'Happy Labor Day!' },
-    carnival: { day: 13, month: 2, message: 'Happy Carnival!' },
-    blackConsciousness: { day: 20, month: 11, message: 'Black Consciousness Day!' },
-    // Adding today's date for testing
-    today: { day: new Date().getDate(), month: new Date().getMonth() + 1, message: 'Today is a special day!' },
-  };
-  
+private holidays = {
+  christmas: { day: 25, month: 12, message: 'Merry Christmas!' },
+  newYear: { day: 1, month: 1, message: 'Happy New Year!' },
+  camilaBirthday: { day: 25, month: 8, message: 'Happy Birthday, Camila!' },
+  mottuYear: { day: 1, month: 4, message: 'One more year working with #MOTTU!' },
+  leandroBirthday: { day: 23, month: 4, message: 'Happy Birthday to me! :)' },
+  victorBirthday: { day: 27, month: 11, message: 'Happy Birthday, Victor!' },
+  brazilIndependence: { day: 7, month: 9, message: 'Happy Independence Day, Brazil!' },
+  laborDay: { day: 1, month: 5, message: 'Happy Labor Day!' },
+  carnival: { day: 13, month: 2, message: 'Happy Carnival!' },
+  blackConsciousness: { day: 20, month: 11, message: 'Black Consciousness Day!' },
+  tiradentes: { day: 21, month: 4, message: 'Tiradentes Day!' },
+  corpusChristi: { day: 3, month: 6, message: 'Corpus Christi Day!' },
+  goodFriday: { day: 15, month: 4, message: 'Good Friday!' },
+  easter: { day: 17, month: 4, message: 'Happy Easter!' },
+  childrensDay: { day: 12, month: 10, message: 'Happy Children\'s Day!' },
+  mothersDay: { day: 9, month: 5, message: 'Happy Mother\'s Day!' },
+  fathersDay: { day: 8, month: 8, message: 'Happy Father\'s Day!' },
+  valentinesDay: { day: 12, month: 6, message: 'Happy Valentine\'s Day!' },
+  womensDay: { day: 8, month: 3, message: 'Happy Women\'s Day!' },
+  internationalDayOfPeace: { day: 21, month: 9, message: 'International Day of Peace!' },
+  internationalDayOfHappiness: { day: 20, month: 3, message: 'International Day of Happiness!' },
+  internationalDayOfFamilies: { day: 15, month: 5, message: 'International Day of Families!' },
+  internationalDayOfFriendship: { day: 30, month: 7, message: 'International Day of Friendship!' },
+  internationalDayOfDemocracy: { day: 15, month: 9, message: 'International Day of Democracy!' },
+  internationalDayOfNonViolence: { day: 2, month: 10, message: 'International Day of Non-Violence!' },
+  internationalDayOfTolerance: { day: 16, month: 11, message: 'International Day of Tolerance!' },
+  internationalDayOfHumanRights: { day: 10, month: 12, message: 'International Day of Human Rights!' },
+}
+
+getHolidayMessage(date: Date): string {
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // JavaScript months são baseados em zero
+
+  // Verifica se a data corresponde a algum feriado
+  for (const [holiday, data] of Object.entries(this.holidays)) {
+    if (day === data.day && month === data.month) {
+      return data.message;
+    }
+  }
+
+  // Mensagens padrão para dias que não são feriados
+  const defaultMessages = [
+    'Have a wonderful day!',
+    'Make today amazing!',
+    'Enjoy your day to the fullest!',
+    'Smile and make the most of today!',
+    'Every day is a new opportunity!'
+  ];
+
+  // Retorna uma mensagem aleatória
+  return defaultMessages[Math.floor(Math.random() * defaultMessages.length)];
+}
+
   ngOnInit() {
     // Update time every second
     this.updateTime();
@@ -70,19 +111,6 @@ export class ClockComponent implements OnInit {
     };
     
     return date.toLocaleDateString('en-US', options);
-  }
-  
-  getHolidayMessage(date: Date): string {
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // JavaScript months are 0-indexed
-    
-    for (const [holiday, data] of Object.entries(this.holidays)) {
-      if (day === data.day && month === data.month) {
-        return data.message;
-      }
-    }
-    
-    return '';
   }
   
   isNightTime(): boolean {
