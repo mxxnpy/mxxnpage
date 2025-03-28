@@ -74,7 +74,7 @@ getHolidayMessage(date: Date): string {
 
   // Mensagens padrão para dias que não são feriados
   const defaultMessages = [
-    'Have a wonderful day!',
+    'Have a wonderful day!',  
     'Make today amazing!',
     'Enjoy your day to the fullest!',
     'Smile and make the most of today!',

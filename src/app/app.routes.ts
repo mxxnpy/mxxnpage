@@ -19,6 +19,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/spotify/spotify.component').then(m => m.SpotifyComponent)
   },
   {
+    path: 'aboutMe',
+    loadComponent: () => import('./pages/aboutMe/about.component').then(m => m.AboutMeComponent)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
