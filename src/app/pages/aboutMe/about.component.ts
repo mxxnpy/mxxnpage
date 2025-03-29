@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClockComponent } from '../../components/clock/clock.component';
 import { GithubActivityComponent } from '../../components/github-activity/github-activity.component';
-import { GithubContributionsComponent } from '../../components/github-contributions/github-contributions.component';
+import { SpotifyWorkHoursComponent } from '../../components/spotify-work-hours/spotify-work-hours.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-about-me',
   standalone: true,
-  imports: [CommonModule, ClockComponent, GithubActivityComponent, GithubContributionsComponent],
+  imports: [CommonModule, GithubActivityComponent, SpotifyWorkHoursComponent],
   animations: [
     trigger('typingAnimation', [
       transition(':enter', [
@@ -26,18 +25,18 @@ import { animate, style, transition, trigger } from '@angular/animations';
           <p class="description" #description [@typingAnimation]>
             Olá! Sou um desenvolvedor apaixonado por tecnologia, com foco em desenvolvimento web e soluções inovadoras.
           </p>
-          
-          <div class="status-section">
-            <app-clock></app-clock>
-          </div>
         </div>
         
         <div class="github-section">
-          <h3 class="subsection-title">GitHub</h3>
-          <div class="github-grid">
+          <h3 class="subsection-title">GitHub Activity</h3>
+          <div class="github-activity-container">
             <app-github-activity [username]="'mxxnpy'"></app-github-activity>
-            <app-github-contributions [username]="'mxxnpy'"></app-github-contributions>
           </div>
+        </div>
+        
+        <div class="spotify-stats">
+          <h3 class="subsection-title">Spotify Work Hours</h3>
+          <app-spotify-work-hours></app-spotify-work-hours>
         </div>
       </div>
     </section>
@@ -45,11 +44,14 @@ import { animate, style, transition, trigger } from '@angular/animations';
   styles: [`
     .about-me {
       margin-top: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .about-content {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 2rem;
       margin-top: 1rem;
     }
@@ -65,13 +67,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
       line-height: 1.6;
     }
 
-    .status-section {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .github-section {
+    .github-section,
+    .spotify-stats {
       background-color: var(--card-background);
       padding: 1.5rem;
       border-radius: 8px;
@@ -84,20 +81,13 @@ import { animate, style, transition, trigger } from '@angular/animations';
       padding-bottom: 0.5rem;
     }
 
-    .github-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .github-activity-container {
+      display: flex;
+      justify-content: center;
     }
 
-    @media (min-width: 768px) {
-      .about-content {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .github-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    .spotify-stats {
+      margin-top: 2rem;
     }
   `]
 })
