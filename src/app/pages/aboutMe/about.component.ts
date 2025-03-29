@@ -210,7 +210,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
     .spotify-stats {
       margin-top: 2rem;
-      padding: 1.5rem
+      padding: 1.5rem;
       background-color: var(--card-background);
       border-radius: 8px;
     }
