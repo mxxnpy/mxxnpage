@@ -205,10 +205,10 @@ export class GithubActivityComponent implements OnInit {
 
   getUserInfo() {
     this.githubService.getUserInfo(this.username).subscribe({
-      next: (data) => {
+      next: (data: any) => {
         this.userInfo = data;
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error = 'Failed to load GitHub user information';
         this.loading = false;
         console.error('GitHub user info error:', err);
@@ -218,11 +218,11 @@ export class GithubActivityComponent implements OnInit {
 
   getUserActivity() {
     this.githubService.getUserActivity(this.username, 5).subscribe({
-      next: (data) => {
+      next: (data: any[]) => {
         this.activities = data;
         this.loading = false;
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error = 'Failed to load GitHub activity';
         this.loading = false;
         console.error('GitHub activity error:', err);
