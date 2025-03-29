@@ -18,7 +18,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
   template: `
     <section class="about-me">
       <h2 class="section-title">Sobre Mim</h2>
-
+      
       <div class="about-content">
         <div class="personal-info">
           <p class="description" #description [@typingAnimation]>
@@ -26,94 +26,110 @@ import { animate, style, transition, trigger } from '@angular/animations';
           </p>
         </div>
 
-        <div class="tech-grid">
-          <div class="tech-item">
-            <img src="assets/icons/Python.svg" alt="Python" class="tech-icon">
-            <span>Python</span>
+        <div class="tech-stack-section">
+          <h3 class="section-title">Stack Técnica</h3>
+          
+          <div class="tech-section">
+            <h4 class="subsection-title">Linguagens</h4>
+            <div class="tech-grid">
+              <div class="tech-item">
+                <img src="assets/icons/Python.svg" alt="Python" class="tech-icon">
+                <span>Python</span>
+              </div>
+              <div class="tech-item">
+                <img src="assets/icons/JavaScript.svg" alt="JavaScript" class="tech-icon">
+                <span>JavaScript</span>
+              </div>
+              <div class="tech-item">
+                <img src="assets/icons/TypeScript.svg" alt="TypeScript" class="tech-icon">
+                <span>TypeScript</span>
+              </div>
+              <div class="tech-item">
+                <img src="assets/icons/Csharp.svg" alt="C#" class="tech-icon">
+                <span>C#</span>
+              </div>
+            </div>
           </div>
-          <div class="tech-item">
-            <img src="assets/icons/JavaScript.svg" alt="JavaScript" class="tech-icon">
-            <span>JavaScript</span>
+
+          <div class="frameworks-section">
+            <h4 class="subsection-title">Frameworks</h4>
+            <div class="frameworks-grid">
+              <div class="framework-item">
+                <img src="assets/icons/Nest.js.svg" alt="NestJS" class="tech-icon">
+                <span>NestJS</span>
+              </div>
+              <div class="framework-item">
+                <img src="assets/icons/Node.js.svg" alt="Node.js" class="tech-icon">
+                <span>Node.js</span>
+              </div>
+              <div class="framework-item">
+                <img src="assets/icons/Angular.svg" alt="Angular" class="tech-icon">
+                <span>Angular</span>
+              </div>
+              <div class="framework-item">
+                <img src="assets/icons/Django.svg" alt="Django" class="tech-icon">
+                <span>Django</span>
+              </div>
+              <div class="framework-item">
+                <img src="assets/icons/NET core.svg" alt="ASP.NET" class="tech-icon">
+                <span>ASP.NET</span>
+              </div>
+            </div>
           </div>
-          <div class="tech-item">
-            <img src="assets/icons/TypeScript.svg" alt="TypeScript" class="tech-icon">
-            <span>TypeScript</span>
-          </div>
-          <div class="tech-item">
-            <img src="assets/icons/C# (CSharp).svg" alt="C#" class="tech-icon">
-            <span>C#</span>
+
+          <div class="data-section">
+            <h4 class="subsection-title">Banco de Dados</h4>
+            <div class="data-grid">
+              <div class="data-item">
+                <img src="assets/icons/SQLite.svg" alt="SQLite" class="tech-icon">
+                <span>SQLite</span>
+              </div>
+              <div class="data-item">
+                <img src="assets/icons/PostgresSQL.svg" alt="PostgreSQL" class="tech-icon">
+                <span>PostgreSQL</span>
+              </div>
+              <div class="data-item">
+                <img src="assets/icons/Google Cloud.svg" alt="BigQuery" class="tech-icon">
+                <span>BigQuery</span>
+              </div>
+              <div class="data-item">
+                <img src="assets/icons/GraphQL.svg" alt="GraphQL" class="tech-icon">
+                <span>GraphQL</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="frameworks-grid">
-          <div class="framework-item">
-            <img src="assets/icons/Nest.js.svg" alt="NestJS" class="tech-icon">
-            <span>NestJS</span>
-          </div>
-          <div class="framework-item">
-            <img src="assets/icons/Node.js.svg" alt="Node.js" class="tech-icon">
-            <span>Node.js</span>
-          </div>
-          <div class="framework-item">
-            <img src="assets/icons/Angular.svg" alt="Angular" class="tech-icon">
-            <span>Angular</span>
-          </div>
-          <div class="framework-item">
-            <img src="assets/icons/Django.svg" alt="Django" class="tech-icon">
-            <span>Django</span>
-          </div>
-          <div class="framework-item">
-            <img src="assets/icons/NET core.svg" alt="ASP.NET" class="tech-icon">
-            <span>ASP.NET</span>
-          </div>
-        </div>
-
-        <div class="data-grid">
-          <div class="data-item">
-            <img src="assets/icons/SQLite.svg" alt="SQLite" class="tech-icon">
-            <span>SQLite</span>
-          </div>
-          <div class="data-item">
-            <img src="assets/icons/PostgresSQL.svg" alt="PostgreSQL" class="tech-icon">
-            <span>PostgreSQL</span>
-          </div>
-          <div class="data-item">
-            <img src="assets/icons/Google Cloud.svg" alt="BigQuery" class="tech-icon">
-            <span>BigQuery</span>
-          </div>
-          <div class="data-item">
-            <img src="assets/icons/GraphQL.svg" alt="GraphQL" class="tech-icon">
-            <span>GraphQL</span>
+        <div class="tools-section">
+          <h3 class="section-title">Ferramentas</h3>
+          <div class="tools-grid">
+            <div class="tool-item">
+              <img src="assets/icons/Docker.svg" alt="Docker" class="tech-icon">
+              <span>Docker</span>
+            </div>
+            <div class="tool-item">
+              <img src="assets/icons/Git.svg" alt="Git" class="tech-icon">
+              <span>Git</span>
+            </div>
+            <div class="tool-item">
+              <img src="assets/icons/GitHub.svg" alt="GitHub" class="tech-icon">
+              <span>GitHub</span>
+            </div>
+            <div class="tool-item">
+              <img src="assets/icons/Visual Studio Code (VS Code).svg" alt="VS Code" class="tech-icon">
+              <span>VS Code</span>
+            </div>
+            <div class="tool-item">
+              <img src="assets/icons/Postman.svg" alt="Postman" class="tech-icon">
+              <span>Postman</span>
+            </div>
           </div>
         </div>
 
-        <div class="tools-grid">
-          <div class="tool-item">
-            <img src="assets/icons/Docker.svg" alt="Docker" class="tech-icon">
-            <span>Docker</span>
-          </div>
-          <div class="tool-item">
-            <img src="assets/icons/Git.svg" alt="Git" class="tech-icon">
-            <span>Git</span>
-          </div>
-          <div class="tool-item">
-            <img src="assets/icons/github.svg" alt="GitHub" class="tech-icon">
-            <span>GitHub</span>
-          </div>
-          <div class="tool-item">
-            <img src="assets/icons/Visual Studio Code (VS Code).svg" alt="VS Code" class="tech-icon">
-            <span>VS Code</span>
-          </div>
-          <div class="tool-item">
-            <img src="assets/icons/Postman.svg" alt="Postman" class="tech-icon">
-            <span>Postman</span>
-          </div>
+        <div class="spotify-stats">
+          <h3 class="section-title">Spotify Work Hours</h3>
+          <app-spotify-work-hours></app-spotify-work-hours>
         </div>
-      </div>
-
-      <div class="spotify-stats">
-        <h3 class="subsection-title">Spotify Work Hours</h3>
-        <app-spotify-work-hours></app-spotify-work-hours>
       </div>
     </section>
   `,
@@ -132,15 +148,22 @@ import { animate, style, transition, trigger } from '@angular/animations';
       margin-top: 1rem;
     }
 
-    .personal-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
     }
 
-    .description {
+    .subsection-title {
       font-size: 1.1rem;
-      line-height: 1.6;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+
+    .tech-icon {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
     }
 
     .tech-section,
@@ -151,13 +174,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
       background-color: var(--card-background);
       padding: 1.5rem;
       border-radius: 8px;
-    }
-
-    .subsection-title {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .tech-grid,
@@ -165,7 +182,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
     .data-grid,
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 1rem;
       padding: 1rem 0;
     }
@@ -178,9 +195,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      padding: 1rem;
+      padding: 0.75rem;
       border-radius: 8px;
-      transition: transform 0.2s;
+      transition: all 0.2s;
     }
 
     .tech-item:hover,
@@ -188,17 +205,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
     .data-item:hover,
     .tool-item:hover {
       transform: translateY(-2px);
-    }
-
-    .tool-icon {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
+      background-color: rgba(255, 255, 255, 0.05);
     }
 
     .spotify-stats {
       margin-top: 2rem;
-      padding: 1.5rem;
+      padding: 1.5rem
       background-color: var(--card-background);
       border-radius: 8px;
     }
