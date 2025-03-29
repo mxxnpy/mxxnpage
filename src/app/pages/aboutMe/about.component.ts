@@ -9,6 +9,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
   selector: 'app-about-me',
   standalone: true,
   imports: [CommonModule, ClockComponent, GithubActivityComponent, GithubContributionsComponent],
+  encapsulation: ViewEncapsulation.Emulated, // Certifique-se de que está configurado
   animations: [
     trigger('typingAnimation', [
       transition(':enter', [
