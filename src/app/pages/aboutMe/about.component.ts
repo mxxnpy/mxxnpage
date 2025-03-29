@@ -42,7 +42,64 @@ import { animate, style, transition, trigger } from '@angular/animations';
       </div>
     </section>
   `,
-  styles: []
+  styles: [`
+    .about-me {
+      margin-top: 2rem;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .personal-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .status-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .github-section {
+      background-color: var(--card-background);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .subsection-title {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .github-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .about-content {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .github-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  `]
 })
 export class AboutMeComponent implements OnInit {
   @ViewChild('description') descriptionElement!: ElementRef;

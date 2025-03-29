@@ -5,6 +5,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { GithubService } from '../../services/github.service';
+import { HttpClient } from '@angular/common/http';
+
+interface GithubUserInfo {
+  login: string;
+  name: string;
+  avatar_url: string;
+  followers: number;
+  public_repos: number;
+  bio?: string;
+}
+
+interface GithubActivity {
+  type: string;
+  created_at: string;
+  repo: {
+    name: string;
+  };
+}
 
 @Component({
   selector: 'app-github-activity',
@@ -49,166 +67,141 @@ import { GithubService } from '../../services/github.service';
         <mat-divider *ngIf="!loading && userInfo" class="divider"></mat-divider>
         
         <div *ngIf="!loading && activities && activities.length > 0" class="activity-list">
-          <h3>Recent Activity</h3>
           <div *ngFor="let activity of activities" class="activity-item">
-            <mat-icon [ngSwitch]="activity.type">
-              <ng-container *ngSwitchCase="'PushEvent'">push</ng-container>
-              <ng-container *ngSwitchCase="'CreateEvent'">add</ng-container>
-              <ng-container *ngSwitchCase="'IssuesEvent'">bug_report</ng-container>
-              <ng-container *ngSwitchCase="'PullRequestEvent'">merge</ng-container>
-              <ng-container *ngSwitchDefault>code</ng-container>
-            </mat-icon>
+            <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
             <div class="activity-details">
-              <span class="activity-type">{{ formatEventType(activity.type) }}</span>
-              <span class="activity-repo">{{ activity.repo?.name }}</span>
-              <span class="activity-time">{{ activity.created_at | date:'MMM d, h:mm a' }}</span>
+              <p class="activity-type">{{ formatEventType(activity.type) }}</p>
+              <p class="activity-repo">{{ activity.repo.name }}</p>
+              <p class="activity-time">{{ getTimeAgo(activity.created_at) }}</p>
             </div>
           </div>
         </div>
         
-        <div *ngIf="!loading && error" class="error-message">
-          <mat-icon>error</mat-icon>
-          <span>{{ error }}</span>
+        <div *ngIf="!loading && activities && activities.length === 0" class="no-activity">
+          <p>No recent activity found</p>
+        </div>
+        
+        <div *ngIf="error" class="error-message">
+          <p>{{ error }}</p>
         </div>
       </mat-card-content>
     </mat-card>
   `,
   styles: [`
     .github-card {
-      height: 100%;
-      transition: transform 0.3s ease;
-    }
-    
-    .github-card:hover {
-      transform: translateY(-5px);
+      margin-bottom: 1rem;
     }
     
     .loading-container {
       display: flex;
       justify-content: center;
-      padding: 24px 0;
+      align-items: center;
+      height: 100px;
     }
     
     .user-info {
       display: flex;
-      margin-bottom: 16px;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
     
     .avatar {
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      margin-right: 16px;
+      object-fit: cover;
     }
     
-    .user-details h3 {
-      margin: 0 0 8px 0;
-    }
-    
-    .user-details p {
-      margin: 0 0 8px 0;
-      color: rgba(0, 0, 0, 0.6);
+    .user-details {
+      flex: 1;
     }
     
     .stats {
       display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
     }
     
     .stat {
       display: flex;
       align-items: center;
-      margin-right: 16px;
+      gap: 0.5rem;
     }
     
-    .stat mat-icon {
-      font-size: 16px;
-      height: 16px;
-      width: 16px;
-      margin-right: 4px;
-    }
-    
-    .divider {
-      margin: 16px 0;
-    }
-    
-    .activity-list h3 {
-      margin: 0 0 16px 0;
-      font-weight: 500;
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
     
     .activity-item {
       display: flex;
-      margin-bottom: 12px;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
     }
     
-    .activity-item mat-icon {
-      margin-right: 12px;
-      color: #555;
+    .activity-item:hover {
+      background-color: rgba(255, 255, 255, 0.05);
     }
     
     .activity-details {
-      display: flex;
-      flex-direction: column;
+      flex: 1;
     }
     
     .activity-type {
       font-weight: 500;
+      margin: 0;
     }
     
     .activity-repo {
-      color: #0366d6;
+      font-size: 0.9rem;
+      color: var(--secondary-text);
+      margin: 0;
     }
     
     .activity-time {
       font-size: 0.8rem;
-      color: rgba(0, 0, 0, 0.6);
+      color: var(--secondary-text);
+      margin: 0;
+    }
+    
+    .no-activity {
+      text-align: center;
+      color: var(--secondary-text);
     }
     
     .error-message {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #f44336;
-      padding: 16px;
-    }
-    
-    .error-message mat-icon {
-      margin-right: 8px;
-    }
-    
-    :host-context(.dark-theme) {
-      .activity-repo {
-        color: #58a6ff;
-      }
-      
-      .user-details p,
-      .activity-time {
-        color: rgba(255, 255, 255, 0.6);
-      }
+      color: #ff4d4f;
+      text-align: center;
     }
   `]
 })
 export class GithubActivityComponent implements OnInit {
   @Input() username: string = 'mxxnpy';
   
-  userInfo: any = null;
-  activities: any[] = [];
+  userInfo: GithubUserInfo | null = null;
+  activities: GithubActivity[] = [];
   loading = true;
   error: string | null = null;
 
-  constructor(private githubService: GithubService) {}
+  constructor(private githubService: GithubService, private http: HttpClient) {}
 
   ngOnInit() {
-    this.getUserInfo();
+    this.getUserProfile();
     this.getUserActivity();
   }
 
-  getUserInfo() {
-    this.githubService.getUserInfo(this.username).subscribe({
-      next: (data) => {
+  getUserProfile() {
+    this.githubService.getUserProfile(this.username).subscribe({
+      next: (data: GithubUserInfo) => {
         this.userInfo = data;
+        this.loading = false;
       },
-      error: (err) => {
+      error: (err: unknown) => {
         this.error = 'Failed to load GitHub user information';
         this.loading = false;
         console.error('GitHub user info error:', err);
@@ -218,11 +211,11 @@ export class GithubActivityComponent implements OnInit {
 
   getUserActivity() {
     this.githubService.getUserActivity(this.username, 5).subscribe({
-      next: (data) => {
+      next: (data: GithubActivity[]) => {
         this.activities = data;
         this.loading = false;
       },
-      error: (err) => {
+      error: (err: unknown) => {
         this.error = 'Failed to load GitHub activity';
         this.loading = false;
         console.error('GitHub activity error:', err);
@@ -231,10 +224,61 @@ export class GithubActivityComponent implements OnInit {
   }
 
   formatEventType(type: string): string {
-    // Remove 'Event' suffix and add spaces between camel case
-    return type
-      .replace('Event', '')
-      .replace(/([A-Z])/g, ' $1')
-      .trim();
+    const typeMap = {
+      'PushEvent': 'Pushed to',
+      'CreateEvent': 'Created',
+      'DeleteEvent': 'Deleted',
+      'IssuesEvent': 'Created issue',
+      'PullRequestEvent': 'Created pull request',
+      'PullRequestReviewEvent': 'Reviewed pull request',
+      'IssueCommentEvent': 'Commented on issue',
+      'PullRequestReviewCommentEvent': 'Commented on pull request',
+      'CommitCommentEvent': 'Commented on commit',
+      'WatchEvent': 'Starred',
+      'ForkEvent': 'Forked',
+      'ReleaseEvent': 'Published release'
+    };
+    
+    return typeMap[type] || type;
+  }
+
+  getActivityIcon(type: string): string {
+    const iconMap = {
+      'PushEvent': 'git_commit',
+      'CreateEvent': 'add_circle',
+      'DeleteEvent': 'delete',
+      'IssuesEvent': 'bug_report',
+      'PullRequestEvent': 'code',
+      'PullRequestReviewEvent': 'comment',
+      'IssueCommentEvent': 'comment',
+      'PullRequestReviewCommentEvent': 'comment',
+      'CommitCommentEvent': 'comment',
+      'WatchEvent': 'star',
+      'ForkEvent': 'fork_right',
+      'ReleaseEvent': 'publish'
+    };
+    
+    return iconMap[type] || 'code';
+  }
+
+  getTimeAgo(dateString: string): string {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+    
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    
+    if (days > 0) {
+      return `${days}d ago`;
+    } else if (hours > 0) {
+      return `${hours}h ago`;
+    } else if (minutes > 0) {
+      return `${minutes}m ago`;
+    } else {
+      return 'Just now';
+    }
   }
 }
