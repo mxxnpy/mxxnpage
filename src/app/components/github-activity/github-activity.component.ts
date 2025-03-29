@@ -199,12 +199,12 @@ export class GithubActivityComponent implements OnInit {
   constructor(private githubService: GithubService) {}
 
   ngOnInit() {
-    this.getUserInfo();
+    this.getUserProfile();
     this.getUserActivity();
   }
 
-  getUserInfo() {
-    this.githubService.getUserInfo(this.username).subscribe({
+  getUserProfile() {
+    this.githubService.getUserProfile(this.username).subscribe({
       next: (data: any) => {
         this.userInfo = data;
       },
