@@ -9,7 +9,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
   selector: 'app-about-me',
   standalone: true,
   imports: [CommonModule, ClockComponent, GithubActivityComponent, GithubContributionsComponent],
-  encapsulation: ViewEncapsulation.Emulated, // Certifique-se de que está configurado
   animations: [
     trigger('typingAnimation', [
       transition(':enter', [
@@ -104,7 +103,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class AboutMeComponent implements OnInit {
   @ViewChild('description') descriptionElement!: ElementRef;
-
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -118,7 +117,7 @@ export class AboutMeComponent implements OnInit {
 
     for (let i = 0; i < text.length; i++) {
       descriptionElement.textContent += text[i];
-      await new Promise(resolve => setTimeout(resolve, 50)); // Adjust typing speed here
+      await new Promise(resolve => setTimeout(resolve, 50));
     }
   }
 }
