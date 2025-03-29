@@ -22,8 +22,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
       <div class="about-content">
         <div class="personal-info">
           <p class="description" #description [@typingAnimation]>
-            Olá! Sou um desenvolvedor apaixonado por tecnologia, com foco em desenvolvimento web e soluções inovadoras.
-          </p>
+  Ola! Me chamo Leandro e tenho 23 anos, sou desenvolvedor junior, atualmente focado em projetos de extração de imagem e análise de dados.
+  Agradeço por visitar o meu site pessoal e abaixo segue toda a stack que sei utilizar no meu dia a dia, inclusive este site foi feito utilizando NestJS, Angular e GraphQL.
+</p>
         </div>
 
         <div class="tech-stack-section">
@@ -233,7 +234,7 @@ export class AboutMeComponent implements OnInit {
   }
 
   private async animateDescription() {
-    const text = 'Olá! Sou um desenvolvedor apaixonado por tecnologia, com foco em desenvolvimento web e soluções inovadoras.';
+    const text = 'Ola! Me chamo Leandro e tenho 23 anos, sou desenvolvedor junior, atualmente focado em projetos de extração de imagem e análise de dados. Agradeço por visitar o meu site pessoal e abaixo segue toda a stack que sei utilizar no meu dia a dia, inclusive este site foi feito utilizando NestJS, Angular e GraphQL.';
     const descriptionElement = this.descriptionElement.nativeElement;
     descriptionElement.textContent = '';
 
