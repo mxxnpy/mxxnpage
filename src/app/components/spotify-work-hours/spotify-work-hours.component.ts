@@ -237,7 +237,7 @@ export class SpotifyWorkHoursComponent implements OnInit {
     this.loadWorkHoursAnalysis();
   }
   
-  loadWorkHoursAnalysis() {
+ loadWorkHoursAnalysis() {
     this.loading = true;
     this.error = null;
     
@@ -245,11 +245,11 @@ export class SpotifyWorkHoursComponent implements OnInit {
       next: (data: any) => {
         this.isWorkHours = data.isCurrentlyInWorkHours || false;
         this.workHoursPercentage = data.workHoursPercentage || 0;
-        this.peakListeningTime = data.peakListeningTime || '10:00 - 12:00';
-        this.listeningTrend = data.listeningTrend || '+5%';
-        this.workGenres = data.workGenres || ['Electronic', 'Ambient', 'Classical', 'Jazz', 'Lo-Fi'];
-        this.nonWorkGenres = data.nonWorkGenres || ['Rock', 'Pop', 'Hip-Hop', 'R&B', 'Metal'];
-        this.mostProductiveGenre = data.mostProductiveGenre || 'Electronic';
+        this.peakListeningTime = data.peakListeningTime || '';
+        this.listeningTrend = data.listeningTrend || '';
+        this.workGenres = data.workGenres || [];
+        this.nonWorkGenres = data.nonWorkGenres || [];
+        this.mostProductiveGenre = data.mostProductiveGenre || '';
         
         this.loading = false;
       },
@@ -257,15 +257,6 @@ export class SpotifyWorkHoursComponent implements OnInit {
         console.error('Error loading work hours analysis:', error);
         this.error = 'Failed to load work hours analysis';
         this.loading = false;
-        
-        // Set default values for development
-        this.isWorkHours = this.checkIfWorkHours();
-        this.workHoursPercentage = 65;
-        this.peakListeningTime = '10:00 - 12:00';
-        this.listeningTrend = '+5%';
-        this.workGenres = ['Electronic', 'Ambient', 'Classical', 'Jazz', 'Lo-Fi'];
-        this.nonWorkGenres = ['Rock', 'Pop', 'Hip-Hop', 'R&B', 'Metal'];
-        this.mostProductiveGenre = 'Electronic';
       }
     });
   }
