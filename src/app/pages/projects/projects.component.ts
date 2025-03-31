@@ -127,14 +127,14 @@ export class ProjectsComponent {
       description: 'A personal portfolio website showcasing my projects and skills.',
       technologies: ['Angular', 'NestJS', 'TypeScript'],
       link: 'https://github.com/mxxnpy/mxxnpage',
-      icon: '/assets/icons/TypeScript.svg'
+      icon: '/mxxnpage/assets/icons/TypeScript.svg'
     },
     {
       title: 'Adopt A Cat!',
       description: 'A web application that allows users to adopt cats from local shelters.',
       technologies: ['C#', 'SQLite', 'ASP.NET Core'],
       link: 'https://github.com/mxxnpy/adopt-a-cat',
-      icon: '/assets/icons/Csharp.svg'
+      icon: '/mxxnpage/assets/icons/Csharp.svg' 
     }
   ];
 }
