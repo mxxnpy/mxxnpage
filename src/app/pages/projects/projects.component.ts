@@ -26,7 +26,7 @@ interface Project {
           target="_blank" 
           rel="noopener noreferrer"
         >
-          <div class="project-icon">
+          <div class="project-icon-box">
             <img [src]="project.icon" [alt]="project.title + ' icon'">
           </div>
           <div class="project-content">
@@ -65,7 +65,6 @@ interface Project {
 
     .project-card {
       display: flex;
-      flex-direction: column;
       align-items: center;
       text-decoration: none;
       background-color: #1e1e1e;
@@ -81,10 +80,26 @@ interface Project {
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .project-icon img {
+    .project-icon-box {
+      flex-shrink: 0;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #333;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+
+    .project-icon-box img {
       width: 48px;
       height: 48px;
-      margin-bottom: 16px;
+    }
+
+    .project-content {
+      flex-grow: 1;
+      text-align: left;
     }
 
     .project-title {
@@ -112,14 +127,14 @@ export class ProjectsComponent {
       description: 'A personal portfolio website showcasing my projects and skills.',
       technologies: ['Angular', 'NestJS', 'TypeScript'],
       link: 'https://github.com/mxxnpy/mxxnpage',
-      icon: '/assets/icons/angular.svg'
+      icon: '/assets/icons/TypeScript.svg'
     },
     {
       title: 'Adopt A Cat!',
       description: 'A web application that allows users to adopt cats from local shelters.',
       technologies: ['C#', 'SQLite', 'ASP.NET Core'],
       link: 'https://github.com/mxxnpy/adopt-a-cat',
-      icon: '/assets/icons/csharp.svg'
+      icon: '/assets/icons/Csharp.svg'
     }
   ];
 }
