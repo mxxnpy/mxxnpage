@@ -6,38 +6,35 @@ interface Project {
   description: string;
   technologies: string[];
   link?: string;
-  imageUrl?: string;
   icon?: string;
 }
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   template: `
     <div class="container">
       <h1>Projects</h1>
       <p class="subtitle">A list of all the projects I've worked on or I'm currently working on.</p>
       
       <div class="projects-list">
-        <div class="project-item" *ngFor="let project of projects">
-          <div class="project-icon" *ngIf="project.icon">
+        <a 
+          class="project-card" 
+          *ngFor="let project of projects" 
+          [href]="project.link" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <div class="project-icon">
             <img [src]="project.icon" [alt]="project.title + ' icon'">
           </div>
           <div class="project-content">
-            <div class="project-title">
-              {{ project.title }}
-              <a *ngIf="project.link" [href]="project.link" target="_blank" class="external-link">
-                <svg viewBox="0 0 24 24" width="16" height="16">
-                  <path fill="currentColor" d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                </svg>
-              </a>
-            </div>
-            <div class="project-description">{{ project.description }}</div>
+            <h2 class="project-title">{{ project.title }}</h2>
+            <p class="project-description">{{ project.description }}</p>
+            <p class="project-stack">{{ project.technologies.join(', ') }}</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   `,
@@ -46,65 +43,83 @@ interface Project {
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
+      text-align: center;
     }
-    
+
     h1 {
       margin-bottom: 24px;
       font-weight: 300;
     }
-    
+
+    .subtitle {
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
     .project-card {
-      height: 100%;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: #fff;
     }
-    
-    .project-card mat-card-content {
-      flex-grow: 1;
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
-    
-    .tech-stack {
-      margin-top: 16px;
+
+    .project-icon img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .project-description {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      color: #ccc;
+    }
+
+    .project-stack {
+      font-size: 0.9rem;
+      color: #888;
     }
   `]
 })
 export class ProjectsComponent {
   projects: Project[] = [
     {
-      title: 'Sample Project',
-      description: 'Sample Description',
-      technologies: ['TypeScript', 'React', 'Node.js'],
-      icon: '/assets/icons/discord.svg'
+      title: 'This Site!',
+      description: 'A personal portfolio website showcasing my projects and skills.',
+      technologies: ['Angular', 'NestJS', 'TypeScript'],
+      link: 'https://github.com/mxxnpy/mxxnpage',
+      icon: '/assets/icons/angular.svg'
     },
     {
-      title: 'Sample Project',
-      description: 'Sample Description',
-      technologies: ['TypeScript', 'Next.js', 'React'],
-      icon: '/assets/icons/globe.svg'
-    },
-    {
-      title: 'Sample Project',
-      description: 'Sample Description',
-      technologies: ['TypeScript', 'Discord API'],
-      icon: '/assets/icons/search.svg'
-    },
-    {
-      title: 'Sample Project',
-      description: 'Sample Description',
-      technologies: ['TypeScript', 'Discord.js', 'Philips Hue API'],
-      icon: '/assets/icons/lightbulb.svg'
-    },
-    {
-      title: 'Sample Project',
-      description: 'Sample Description',
-      technologies: ['TypeScript', 'Angular', 'Spotify API'],
-      icon: '/assets/icons/spotify.svg'
-    },
-    {
-      title: 'Sample Project',
-      description: 'Sample Description',
-      technologies: ['TypeScript', 'React', 'Philips Hue API'],
-      icon: '/assets/icons/lightbulb.svg'
+      title: 'Adopt A Cat!',
+      description: 'A web application that allows users to adopt cats from local shelters.',
+      technologies: ['C#', 'SQLite', 'ASP.NET Core'],
+      link: 'https://github.com/mxxnpy/adopt-a-cat',
+      icon: '/assets/icons/csharp.svg'
     }
   ];
 }
