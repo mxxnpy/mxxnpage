@@ -123,6 +123,13 @@ interface Project {
 export class ProjectsComponent {
   projects: Project[] = [
     {
+      title: 'Send Me an Request',
+      description: 'Send me your project request.',
+      technologies: ['C#', 'TypeScript', 'Python'],
+      link: 'about:blank',
+      icon: '/mxxnpage/assets/icons/github.svg'
+    },
+    {
       title: 'This Site!',
       description: 'A personal portfolio website showcasing my projects and skills.',
       technologies: ['Angular', 'NestJS', 'TypeScript'],
@@ -135,6 +142,13 @@ export class ProjectsComponent {
       technologies: ['C#', 'SQLite', 'ASP.NET Core'],
       link: 'https://github.com/mxxnpy/adopt-a-cat',
       icon: '/mxxnpage/assets/icons/Csharp.svg' 
+    },
+    {
+      title: 'PortTracker',
+      description: 'An localhost service detector with useful dashboards.',
+      technologies: ['C#'],
+      link: 'https://github.com/mxxnpy/PortTracker',
+      icon: '/mxxnpage/assets/icons/Csharp.svg'
     }
   ];
 }
